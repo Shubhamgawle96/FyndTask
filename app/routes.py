@@ -50,8 +50,8 @@ def login():
 
 #add to db operation route for admin user
 @login_required
-@app.route('/add_db', methods=['GET', 'POST'])
-def add_db():
+@app.route('/add', methods=['POST'])
+def add():
     try:
         all_args = request.form.to_dict(flat=True)
         all_args['username'] = current_user.username
@@ -67,8 +67,8 @@ def add_db():
 
 #Edit db operation route for admin user
 @login_required
-@app.route('/edit_movie', methods=['GET', 'POST'])
-def edit_movie():
+@app.route('/edit', methods=['POST'])
+def edit():
     try:
         all_args = request.form.to_dict(flat=True)
         actual_dict = {}
@@ -95,8 +95,8 @@ def edit_movie():
 
 #del from db operation route for admin user
 @login_required
-@app.route('/del_movie', methods=['GET', 'POST'])
-def del_movie():
+@app.route('/delete', methods=['POST'])
+def delete():
     try:
         all_args = request.form.to_dict(flat=True)
         m = Movie.query.filter_by(name = all_args['movie_name']).first()
@@ -107,8 +107,8 @@ def del_movie():
         raise e
 
 #Search operation route for all users
-@app.route('/search_movie', methods=['GET', 'POST'])
-def search_movie():
+@app.route('/search', methods=['POST'])
+def search():
     try:
         all_args = request.form.to_dict(flat=True)
 
@@ -128,7 +128,7 @@ def search_movie():
 
 #get movie name route for admin user
 @login_required
-@app.route('/get_movie_name', methods=['GET', 'POST'])
+@app.route('/movie', methods=['GET'])
 def get_movie_name():
     try:
         movie_list = []
@@ -149,7 +149,7 @@ def logout():
         raise e
 
 #INdex or main route for any user
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def user():
     try:
         movie_list = []

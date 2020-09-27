@@ -9,7 +9,7 @@ function add_movie(){
 
 //open edit modal
 function edit_movie(){
-   $.get('/get_movie_name',function(response, status){
+   $.get('/movie',function(response, status){
             resp = JSON.parse(response);
             console.log("movie name",resp);
 
@@ -26,7 +26,7 @@ function edit_movie(){
 
 //open del modal
 function del_movie(){
-    $.get('/get_movie_name',function(response, status){
+    $.get('/movie',function(response, status){
             resp = JSON.parse(response);
             console.log("movie name",resp);
 
@@ -69,7 +69,7 @@ function add_db(){
           }
         console.log("This is the dict",dict);
 
-        $.post('/add_db',dict, function(response, status){
+        $.post('/add',dict, function(response, status){
                 console.log("Successfully posted");
                 close_me('myModal');
                 location.reload();
@@ -100,7 +100,7 @@ function edit_db(){
         form_data_dict[field_name] = field_value;
     }
     console.log("form edkited data dict",form_data_dict) ;
-     $.post('/edit_movie',form_data_dict, function(response, status){
+     $.post('/edit',form_data_dict, function(response, status){
         console.log("Successfully posted");
         close_me('myModaledit');
         location.reload();
@@ -119,7 +119,7 @@ function del_db(){
         var form_data_dict = {}
         form_data_dict['movie_name'] = movie_name;
         console.log("del dict",form_data_dict)
-       $.post('/del_movie',form_data_dict, function(response, status){
+       $.post('/delete',form_data_dict, function(response, status){
             console.log("Successfully posted");
             close_me('myModaldel');
             location.reload();
@@ -162,7 +162,7 @@ function search_movie(){
     else{
         var form_data_dict = {}
         form_data_dict['movie_name'] = movie_name;
-        $.post('/search_movie',form_data_dict, function(response, status){
+        $.post('/search',form_data_dict, function(response, status){
             resp = JSON.parse(response);
             console.log("search_resp",resp);
             open_search_modal(resp);
