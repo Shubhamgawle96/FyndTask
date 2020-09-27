@@ -1,1 +1,1 @@
-web: flask db upgrade; gunicorn FyndTask:app
+web: flask db upgrade; gunicorn run:app
