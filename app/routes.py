@@ -50,9 +50,10 @@ def login():
 
 #add to db operation route for admin user
 @login_required
-@app.route('/add', methods=['POST'])
+@app.route('/movies/add', methods=['POST'])
 def add():
     try:
+        print("request",request)
         all_args = request.form.to_dict(flat=True)
         all_args['username'] = current_user.username
         # Now add all_args to create snooze db.
@@ -67,7 +68,7 @@ def add():
 
 #Edit db operation route for admin user
 @login_required
-@app.route('/edit', methods=['POST'])
+@app.route('/movies/edit', methods=['POST'])
 def edit():
     try:
         all_args = request.form.to_dict(flat=True)
@@ -95,7 +96,7 @@ def edit():
 
 #del from db operation route for admin user
 @login_required
-@app.route('/delete', methods=['POST'])
+@app.route('/movies/delete', methods=['POST'])
 def delete():
     try:
         all_args = request.form.to_dict(flat=True)
@@ -107,7 +108,7 @@ def delete():
         raise e
 
 #Search operation route for all users
-@app.route('/search', methods=['POST'])
+@app.route('/movies/search', methods=['POST'])
 def search():
     try:
         all_args = request.form.to_dict(flat=True)
@@ -128,7 +129,7 @@ def search():
 
 #get movie name route for admin user
 @login_required
-@app.route('/movie', methods=['GET'])
+@app.route('/movies/names', methods=['GET'])
 def get_movie_name():
     try:
         movie_list = []
@@ -184,5 +185,15 @@ def register():
         return render_template('register.html', title='Register', form=form)
     except Exception as e:
         raise e
+
+@app.route('/test_add', methods=['GET', 'POST'])
+def test_add():
+    all_args = request.form.to_dict(flat=True)
+    print("Coming from test_add",all_args)
+    m = Movie(name=all_args['name'], score=all_args['score'], director=all_args['director'],
+              popularity=all_args['popularity'], genre=all_args['genre'], author='shubham')
+    db.session.add(m)
+    db.session.commit()
+    return "Success"
 
 

@@ -1,37 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi, {{ current_user.username }} you are an Admin you can browse,add,delete and edit a movie!!</h1>
-    <button onclick = "add_movie()">Add</button>
-    <button onclick = "edit_movie()">Edit</button>
-    <button onclick = "del_movie()">Delete</button>
-    <hr>
-    <div >
-        <label for="search" >Search by Movie name:</label>
-        <input type="text" name="search" id="search"><br><br>
-        <button style="margin-left: 26%;margin-top: -38px;" onclick = "search_movie()">Search</button>
+    <div>
+        <h2 style="float:left;">Hi, {{ current_user.username }} you are an Admin you can browse,add,delete and edit a movie!!</h2>
+        <div style="float:right;margin-top:1%;">
+            <button onclick = "add_movie()">Add</button>
+            <button onclick = "edit_movie()">Edit</button>
+            <button onclick = "del_movie()">Delete</button>
+            <button onclick = "test()">test_button</button>
+        </div>
     </div>
-    <hr>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Score</th>
-        <th>Director</th>
-        <th>Popularity</th>
-        <th>Genre</th>
-        <th>Added by</th>
-      </tr>
-      {%for m in movies %}
-      <tr>
-        <td>{{m['name']}}</td>
-        <td>{{m['imdb_score']}}</td>
-        <td>{{m['director']}}</td>
-        <td>{{m['99popularity']}}</td>
-        <td>{{m['genre']}}</td>
-        <td>{{m['author']}}</td>
+    <div>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Director</th>
+            <th>Popularity</th>
+            <th>Genre</th>
+            <th>Added by</th>
+          </tr>
+          {%for m in movies %}
+          <tr>
+            <td>{{m['name']}}</td>
+            <td>{{m['imdb_score']}}</td>
+            <td>{{m['director']}}</td>
+            <td>{{m['99popularity']}}</td>
+            <td>{{m['genre']}}</td>
+            <td>{{m['author']}}</td>
 
-      </tr>
-      {% endfor %}
+          </tr>
+          {% endfor %}
 
-    </table>
+        </table>
+    </div>
 {% endblock %}

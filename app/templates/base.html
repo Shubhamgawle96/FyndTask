@@ -121,14 +121,22 @@
         </div>
 
         <div>
-            FMDB:
-            <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('user') }}">Browse</a>
-            {% if current_user.is_anonymous %}
-            <a href="{{ url_for('login') }}">Login</a>
-            {% else %}
-            <a href="{{ url_for('logout') }}">Logout</a>
-            {% endif %}
+            <h1>FMDB: Fynd movie database</h1>
+            <div style="margin-top:-3%;float:right;">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('user') }}">Browse</a>
+                {% if current_user.is_anonymous %}
+                <a href="{{ url_for('login') }}">Login</a>
+                {% else %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+                {% endif %}
+            </div>
+            <hr>
+            <div >
+                <label for="search" >Search by Movie name:</label>
+                <input type="text" name="search" id="search"><br><br>
+                <button style="margin-left: 26%;margin-top: -38px;" onclick = "search_movie()">Search</button>
+            </div>
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}
@@ -141,10 +149,7 @@
         {% endif %}
         {% endwith %}
         {% block content %}
-            <h1>Hi, {{ current_user.username }}!</h1>
-            {% for post in posts %}
-            <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
-            {% endfor %}
+
         {% endblock %}
 
     </body>
