@@ -1,26 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Hi, User!! you can browse and search for movies!!</h2>
-    <hr>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Score</th>
-        <th>director</th>
-        <th>popularity</th>
-        <th>genre</th>
-      </tr>
-      {%for m in movies %}
-      <tr>
-        <td>{{m['name']}}</td>
-        <td>{{m['imdb_score']}}</td>
-        <td>{{m['director']}}</td>
-        <td>{{m['99popularity']}}</td>
-        <td>{{m['genre']}}</td>
+    <h2 style="color:white;">Hi, User!! you can browse and search for movies!!</h2>
+    <div style="overflow-y:auto;height:65%;width:100%;">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>director</th>
+            <th>popularity</th>
+            <th>genre</th>
+          </tr>
+          {%for m in movies %}
+          <tr>
+            <td>{{m['name']}}</td>
+            <td>{{m['imdb_score']}}</td>
+            <td>{{m['director']}}</td>
+            <td>{{m['99popularity']}}</td>
+            <td>{{m['genre']}}</td>
 
-      </tr>
-      {% endfor %}
+          </tr>
+          {% endfor %}
 
-    </table>
+        </table>
+    </div>
 {% endblock %}

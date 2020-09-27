@@ -11,9 +11,15 @@ td, th {
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #bdcebe;
 }
-
+tr:nth-child(odd) {
+  background-color: #d6cbd3;
+}
+button{
+    width:100px;
+    height:30px;
+}
 
 /* The Modal (background) */
 .modal {
@@ -53,3 +59,30 @@ tr:nth-child(even) {
   text-decoration: none;
   cursor: pointer;
 }
+body{
+    background-color: #eca1a6;
+}
+
+a {
+    font:size:x-large;
+}
+#email{width:100%;}
+#register{
+    background-color: #bdcebe;
+    width: 21%;
+    /* padding-left: 6%; */
+    /* padding-top: 3%; */
+    padding: 4%;
+    margin-left: 37%;
+    border-radius: 20px;
+}
+#sign_in{
+          background-color: #d6cbd3;
+    width: 21%;
+    /* padding-left: 6%; */
+    /* padding-top: 3%; */
+    padding: 4%;
+    margin-left: 37%;
+    border-radius: 20px;
+}
+label { display: block; float:left;width: 213px; }

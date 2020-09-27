@@ -2842,21 +2842,30 @@ function del_db(){
 //to open search result modal
 function open_search_modal(resp){
     console.log("in open_search_modal",resp);
-    if(resp['notfound'] == 'notfound'){
-        alert("Movie not found");
+    if(resp.length == 0){
+        alert("Movies not found,please refine your query");
     }
     else{
         var table = document.getElementById("search_table");
-
+        console.log("search_resp",resp);
         console.log("search_table",table);
         $('#search_table').empty();
         $('#search_table').append('<tr><th>Name</th><th>Score</th><th>Director</th><th>Popularity</th><th>Genre</th></tr>');
-        $('#search_table').append('<tr id="search_row"></tr>');
-        var row = document.getElementById("search_row");
-        console.log("tavleeee",$('#search_table'))
-        console.log("search_roe",row);
-        row.innerHTML = row.innerHTML + '<td>' + resp['name'] + '</td>' + '<td>' + resp['score'] + '</td>' +
-         '<td>' + resp['director'] + '</td>' +'<td>' + resp['popularity'] + '</td>' +'<td>' + resp['genre'] + '</td>';
+        $('#search_table').append('<tbody id="sbody">' + '</tbody>');
+        var body = document.getElementById("sbody");
+        console.log("body",body)
+        for(var i=0;i<resp.length;i++){
+            var row2 = '<tr>'+ '<td>' + resp[i]['name'] + '</td>' + '<td>' + resp[i]['score'] + '</td>' +
+                         '<td>' + resp[i]['director'] + '</td>' +'<td>' + resp[i]['popularity'] + '</td>' +'<td>' + resp[i]['genre'] + '</td>' +'</tr>';
+             console.log("roww",row2);
+             body.innerHTML = body.innerHTML + row2;
+        }
+
+//        $('#search_table').append('<tr id="search_row"></tr>');
+//        var row = document.getElementById("search_row");
+//        console.log("search_roe",row);
+//        row.innerHTML = row.innerHTML + '<td>' + resp['name'] + '</td>' + '<td>' + resp['score'] + '</td>' +
+//         '<td>' + resp['director'] + '</td>' +'<td>' + resp['popularity'] + '</td>' +'<td>' + resp['genre'] + '</td>';
         search_modal = document.getElementById("searchmodal");
         search_modal.style.display = 'block';
     }

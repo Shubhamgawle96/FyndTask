@@ -112,18 +112,24 @@ def delete():
 def search():
     try:
         all_args = request.form.to_dict(flat=True)
-
-        result_dict = {}
-        i = Movie.query.filter_by(name = all_args['movie_name']).first()
-        if i is None:
-            return json.dumps({'notfound':'notfound'})
-        result_dict['name'] = i.name
-        result_dict['score'] = i.score
-        result_dict['director'] = i.director
-        result_dict['popularity'] = i.popularity
-        result_dict['genre'] = i.genre
-        result_dict['notfound'] = 'found'
-        return json.dumps(result_dict)
+        result_list = []
+        search = "%{}%".format(all_args['movie_name'])
+        print("search",search)
+        m = Movie.query.filter(Movie.name.like(search)).all()
+        print("search_result",m)
+        if m is None:
+            return json.dumps([])
+        for i in m:
+            result_dict = {}
+            result_dict['name'] = i.name
+            result_dict['score'] = i.score
+            result_dict['director'] = i.director
+            result_dict['popularity'] = i.popularity
+            result_dict['genre'] = i.genre
+            result_dict['notfound'] = 'found'
+            result_list.append(result_dict)
+        print("result_list",result_list)
+        return json.dumps(result_list)
     except Exception as e:
         raise e
 

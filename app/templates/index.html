@@ -2,7 +2,7 @@
 
 {% block content %}
     <div>
-        <h2 style="float:left;">Hi, {{ current_user.username }},you are an Admin you can browse,add,delete and edit a movie!!</h2>
+        <h2 style="float:left;color:white;">Hi, {{ current_user.username }},you are an Admin you can browse,add,delete and edit a movie!!</h2>
         <div style="float:right;margin-top:1%;">
             <button onclick = "add_movie()">Add</button>
             <button onclick = "edit_movie()">Edit</button>
@@ -10,27 +10,29 @@
         </div>
     </div>
     <div>
-        <table>
-          <tr>
-            <th>Name</th>
-            <th>Score</th>
-            <th>Director</th>
-            <th>Popularity</th>
-            <th>Genre</th>
-            <th>Added by</th>
-          </tr>
-          {%for m in movies %}
-          <tr>
-            <td>{{m['name']}}</td>
-            <td>{{m['imdb_score']}}</td>
-            <td>{{m['director']}}</td>
-            <td>{{m['99popularity']}}</td>
-            <td>{{m['genre']}}</td>
-            <td>{{m['author']}}</td>
+        <div style="overflow-y:auto;height:65%;width:100%;">
+            <table >
+              <tr>
+                <th>Name</th>
+                <th>Score</th>
+                <th>Director</th>
+                <th>Popularity</th>
+                <th>Genre</th>
+                <th>Added by</th>
+              </tr>
+              {%for m in movies %}
+              <tr>
+                <td>{{m['name']}}</td>
+                <td>{{m['imdb_score']}}</td>
+                <td>{{m['director']}}</td>
+                <td>{{m['99popularity']}}</td>
+                <td>{{m['genre']}}</td>
+                <td>{{m['author']}}</td>
 
-          </tr>
-          {% endfor %}
+              </tr>
+              {% endfor %}
 
-        </table>
+            </table>
+        </div>
     </div>
 {% endblock %}
