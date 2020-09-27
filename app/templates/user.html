@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Hi, User!! you can browse and search for movies!!</h1>
+    <div >
+        <label for="search" >Search by Movie name:</label>
+        <input type="text" name="search" id="search"><br><br>
+        <button onclick = "search_movie()">Search</button>
+    </div>
+    <hr>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+        <th>director</th>
+        <th>popularity</th>
+        <th>genre</th>
+      </tr>
+      {%for m in movies %}
+      <tr>
+        <td>{{m['name']}}</td>
+        <td>{{m['imdb_score']}}</td>
+        <td>{{m['director']}}</td>
+        <td>{{m['99popularity']}}</td>
+        <td>{{m['genre']}}</td>
+
+      </tr>
+      {% endfor %}
+
+    </table>
+{% endblock %}

@@ -1,0 +1,152 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+        <script src="{{url_for('static', filename='scripts/main.js')}}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        {% if title %}
+        <title>{{ title }} - FMDB</title>
+        {% else %}
+        <title>FMDB</title>
+        {% endif %}
+    </head>
+    <body>
+
+        <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <p>Add Movies to DB, name should be unique because unless you bought a copyright</p>
+            <form id="add_form" onsubmit="return false">
+              <label for="name">name:</label>
+              <input type="text" name="name" id="name"><br><br>
+
+              <label for="score">Score:</label>
+              <input type="number" name="score" step="0.01" id="score"><br><br>
+
+              <label for="director">Director:</label>
+              <input type="text" name="director" id="director"><br><br>
+
+              <label for="genre">Genre:</label>
+              <input type="text" name="genre" id="genre"><br><br>
+
+              <label for="popularity">Popularity:</label>
+              <input type="number" name="popularity" step="0.01" id="popularity"><br><br>
+
+              <button onclick = "close_me('myModal')">Close</button>
+              <button onclick = "add_db()">Add</button>
+
+            </form>
+          </div>
+
+        </div>
+
+        <div id="myModaledit" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <p>Edit Movies</p>
+            <form id="edit_form" onsubmit="return false">
+
+              <label for="mnamechng">Movie you wanna edit:</label>
+                <select id="mnamechng" name="mnamechng">
+                  <option value=""></option>
+                </select>
+
+              <p>Input information that you wanna change</p>
+              <label for="name2">name:</label>
+              <input type="text" name="name" id="name2"><br><br>
+
+              <label for="score2">Score:</label>
+              <input type="number" name="score" step="0.01" id="score2"><br><br>
+
+              <label for="director2">Director:</label>
+              <input type="text" name="director" id="director2"><br><br>
+
+              <label for="genre2">Genre:</label>
+              <input type="text" name="genre" id="genre2"><br><br>
+
+              <label for="popularity2">Popularity:</label>
+              <input type="number" name="popularity" step="0.01" id="popularity2"><br><br>
+
+              <button onclick = "close_me('myModaledit')">Close</button>
+              <button onclick = "edit_db()">Edit</button>
+
+            </form>
+          </div>
+
+        </div>
+
+        <div id="myModaldel" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <p>Delete Movies</p>
+            <form id="del_form" onsubmit="return false">
+
+              <label for="mnamedel">Movie you wanna delete:</label>
+                <select id="mnamedel" name="mnamedel">
+                  <option value=""></option>
+                </select>
+
+
+              <button onclick = "close_me('myModaldel')">Close</button>
+              <button onclick = "del_db()">Delete</button>
+
+            </form>
+          </div>
+
+        </div>
+
+        <div id="searchmodal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+              <p>Search Results</p>
+              <table id="search_table">
+                  <tr>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>Director</th>
+                    <th>Popularity</th>
+                    <th>Genre</th>
+                  </tr>
+                  <tr id="search_row">
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                    <td>test</td>
+                  </tr>
+              </table>
+              <button onclick = "close_me('searchmodal')">Close</button>
+
+          </div>
+
+        </div>
+
+        <div>
+            FMDB:
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('user') }}">Browse</a>
+            {% if current_user.is_anonymous %}
+            <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}
+            <h1>Hi, {{ current_user.username }}!</h1>
+            {% for post in posts %}
+            <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>
+            {% endfor %}
+        {% endblock %}
+
+    </body>
+
+</html>
