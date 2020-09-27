@@ -186,14 +186,6 @@ def register():
     except Exception as e:
         raise e
 
-@app.route('/test_add', methods=['GET', 'POST'])
-def test_add():
-    all_args = request.form.to_dict(flat=True)
-    print("Coming from test_add",all_args)
-    m = Movie(name=all_args['name'], score=all_args['score'], director=all_args['director'],
-              popularity=all_args['popularity'], genre=all_args['genre'], author='shubham')
-    db.session.add(m)
-    db.session.commit()
-    return "Success"
+
 
 

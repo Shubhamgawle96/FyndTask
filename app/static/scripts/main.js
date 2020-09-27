@@ -2864,25 +2864,6 @@ function open_search_modal(resp){
 
 }
 
-function test(){
-//    console.log("coming in test",test_data.length);
-    for(var i=0;i<test_data.length;i++){
-        mydict = {};
-        mydict['name'] = test_data[i]['name'];
-        mydict['score'] = test_data[i]['imdb_score'];
-        mydict['director'] = test_data[i]['director'];
-        mydict['genre'] = test_data[i]['genre'].join();
-        mydict['popularity'] = test_data[i]['99popularity'];
-        console.log("mytestdict",mydict);
-        $.post('/movies/add',mydict, function(response, status){
-                console.log("Successfully posted");
-//                close_me('myModal');
-//                location.reload();
-          });
-    }
-//    dict = {'name': 'testaddapi', 'score': '89', 'director': 'bjmkmb', 'genre': 'mkjmn', 'popularity': '7', '': ''};
-
-}
 
 //funciton to search movie
 function search_movie(){
