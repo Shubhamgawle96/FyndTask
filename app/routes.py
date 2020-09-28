@@ -113,9 +113,9 @@ def search():
     try:
         all_args = request.form.to_dict(flat=True)
         result_list = []
-        search = "%{}%".format(all_args['movie_name'])
+        search = "%{}%".format(all_args['movie_name'].lower())
         print("search",search)
-        m = Movie.query.filter(Movie.name.like(search)).all()
+        m = Movie.query.filter(Movie.name.ilike(search)).all()
         print("search_result",m)
         if m is None:
             return json.dumps([])
