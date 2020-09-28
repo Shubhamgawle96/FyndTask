@@ -1,4 +1,6 @@
 #Features
+
+
 1- Has two level access, Admin and User
 
 2- User can browse and search for movies
